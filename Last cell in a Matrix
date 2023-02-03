@@ -1,0 +1,44 @@
+class Solution{
+    public:
+    pair<int,int> endPoints(vector<vector<int>> matrix, int R, int C){
+        //code here
+        int i = 0;int j = 0;
+        string prev="right";
+        while(i>=0 && i<R && j>=0 && j<C){
+            if(matrix[i][j]==0){
+                if(prev=="left")j--;
+                if(prev=="right")j++;
+                if(prev=="down")i++;
+                if(prev=="up")i--;
+                 }
+            else {
+                matrix[i][j]=0;
+                if(prev=="left"){
+                    i--;
+                    prev="up";
+                    continue;
+                }
+                if(prev=="right"){
+                    i++;
+                    prev="down";
+                    continue;
+                }
+                if(prev=="down"){
+                    j--;
+                    prev="left";
+                    continue;
+                }
+                if(prev=="up"){
+                    j++;
+                    prev="right";
+                    continue;
+                }
+            }
+        }
+        if(i<0)i++;
+        if(i==R)i--;
+        if(j<0)j++;
+        if(j==C)j--;
+      return {i,j};  
+    }
+};
